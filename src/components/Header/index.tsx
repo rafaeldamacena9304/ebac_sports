@@ -3,6 +3,7 @@ import * as S from './styles';
 import { paraReal } from '../Produto';
 import cesta from '../../assets/cesta.png';
 import { Produto } from '../../App';
+import { RootState } from '../../redux/rootReducer';
 
 type Props = {
   favoritos: Produto[];
@@ -10,9 +11,9 @@ type Props = {
 };
 
 const Header = ({ favoritos }: Props) => {
-  const itensNoCarrinho = useSelector((state: { carrinho: { itensNoCarrinho: Produto[] } }) => state.carrinho.itensNoCarrinho);
+  const itensNoCarrinho = useSelector((state: RootState) => state.carrinho.itensNoCarrinho);
 
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
+  const valorTotal = itensNoCarrinho.reduce((acc: any, item: any) => {
     acc += item.preco;
     return acc;
   }, 0);
